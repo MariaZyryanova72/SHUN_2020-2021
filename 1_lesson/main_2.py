@@ -26,5 +26,4 @@ geo_data = {
 
 data['region'] = data['keyword'].apply(geo_classification)
 
-
 print(data[data['region'] != 'undefined'].head())  # Выводим все запросы, которые не пустые
