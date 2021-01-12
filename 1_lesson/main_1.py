@@ -9,7 +9,6 @@ from os import path
 
 
 data = pd.read_csv(path.join('data', 'keywords.csv'))
-data.head()
 
 # data.info()  # информация о данных
 
