@@ -4,7 +4,6 @@ import pandas as pd
 # Визуализировать данные пандас мы можем как с помощью методов самого Pandas, так и с помощью Matplotlib
 import matplotlib.pyplot as plt
 
-
 data = pd.read_csv(path.join('data', 'tips.csv'))
 print(data.head())
 
@@ -32,5 +31,3 @@ data.pivot_table(values=['total_bill', 'tip'],
                  index='day',
                  aggfunc='mean').plot(kind='bar')
 plt.show()
-
-
