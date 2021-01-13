@@ -1,11 +1,17 @@
 # Библиотека SKLearn - библиотека для решения задач машинного обучения.
-import sklearn
 import numpy as np
 import pandas as pd
+import sklearn
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+
 from sklearn.metrics import mean_squared_error, mean_absolute_error
+# Нас интересует средняя квадратичная(MSE) и средняя абсолютная ошибка(MAE).
+from sklearn.metrics import mean_squared_error, mean_absolute_error
+from sklearn import metrics
+
+sklearn.metrics.__dir__()
 
 import matplotlib.pyplot as plt
 
@@ -75,3 +81,20 @@ plt.scatter(x_test, y_test, label='test')
 plt.plot(x, x * k + b, label='predicted')
 plt.legend()
 plt.show()
+
+#########################
+# Метрики
+#########################
+# Метрик довольно много все они хранятся в sklearn.metrics
+
+y_train_predicted = mean_squared_error(model.predict(x_train), y_train)
+y_test_predicted = mean_squared_error(model.predict(x_test), y_test)
+
+print('Train MSE: ', y_train_predicted)
+print('Test MSE: ', y_test_predicted)
+
+y_train_predicted_mae = mean_absolute_error(model.predict(x_train), y_train)
+y_test_predicted_mae = mean_absolute_error(model.predict(x_test), y_test)
+
+print('Train MAE: ', y_train_predicted_mae)
+print('Test MAE: ', y_test_predicted_mae)
