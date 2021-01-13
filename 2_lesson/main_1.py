@@ -37,4 +37,3 @@ for file in files:
     data = pd.concat([data, temp], ignore_index=True)
 data.info()
 # В результате получаем датацет, состоящий из 10 таблиц
-
