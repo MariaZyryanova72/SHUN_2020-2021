@@ -178,4 +178,3 @@ model.fit(data_train, y_train)
 predicted_lr = model.predict(data_val)
 print(predicted_lr)
 print(log_loss(y_val, predicted_lr))
-
