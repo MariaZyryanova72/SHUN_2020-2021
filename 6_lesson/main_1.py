@@ -1,4 +1,6 @@
+###############
 # Регрессия
+###############
 
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -25,7 +27,9 @@ print(x_train.shape)
 print(x_test.shape)
 
 
+###############
 # Скорость обучения
+###############
 
 def plot_prediction(x_test, y_test, model):
     predictions = model.predict(x_test)
@@ -45,8 +49,7 @@ model.compile(optimizer=Adam(), loss='mse', metrics=['mae'])
 hist = model.fit(x_train, y_train, epochs=500)
 plt.plot(hist.history['loss'])
 plt.show()
-plot_prediction(x_test, y_test,  model)
-
+plot_prediction(x_test, y_test, model)
 
 model = Sequential()
 model.add(Dense(2, input_shape=(1,), activation='linear'))
@@ -58,4 +61,27 @@ hist = model.fit(x_train, y_train, epochs=500)
 plt.plot(hist.history['loss'])
 plt.show()
 
+plot_prediction(x_test, y_test, model)
+
+
+###############
+# Остановка обучения
+###############
+
+class CallBack(tf.keras.callbacks.Callback):
+    def on_epoch_end(self, epoch, logs):
+        if logs['loss'] < 90:
+            print('\nloss < 90. Останавливаем обучение.')
+            self.model.stop_training = True
+
+
+model = Sequential()
+model.add(Dense(2, input_shape=(1,), activation='linear'))
+model.add(Dense(1, activation='linear'))
+
+model.compile(optimizer=Adam(learning_rate=0.1), loss='mse', metrics=['mae'])
+
+hist = model.fit(x_train, y_train, epochs=500, callbacks=[CallBack()])
+plt.plot(hist.history['loss'])
+plt.show()
 plot_prediction(x_test, y_test, model)
