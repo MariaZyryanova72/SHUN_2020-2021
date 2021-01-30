@@ -67,7 +67,7 @@ def sigmoid(x):
 
 
 sigmoid_model = Sequential([
-    Dense(2, input_dim=2, activation='sigmoid',  use_bias=False),
+    Dense(2, input_dim=2, activation='sigmoid', use_bias=False),
     Dense(1, activation='sigmoid', use_bias=False)
 ])
 
@@ -81,3 +81,28 @@ print(n2)
 
 sigmoid_output = sigmoid(n1 * w5 + n2 * w6)
 print(sigmoid_output)
+
+
+#################
+# Relu
+#################
+
+def relu(x):
+    return np.clip(x, 0, np.inf)
+
+
+relu_model = Sequential([
+    Dense(2, input_dim=2, activation='relu', use_bias=False),
+    Dense(1, activation='relu', use_bias=False)
+])
+
+relu_model.set_weights(new_weight)
+relu_model.predict(x_train)
+
+n1 = relu(w1 * x_train[0][0] + w2 * x_train[0][1])
+n2 = relu(w3 * x_train[0][0] + w4 * x_train[0][1])
+print(n1)
+print(n2)
+
+relu_output = relu(n1 * w5 + n2 * w6)
+print(relu_output)
