@@ -158,23 +158,18 @@ print(model.train_on_batch(x_train, y_train))
 
 print(model.fit(x_train, y_train, epochs=1000))
 
-weights = model.get_weights() # Получим веса нашей модели (генерируются случайным образом)
+weights = model.get_weights()  # Получим веса нашей модели (генерируются случайным образом)
 print(weights)
 print(new_weight)
 
-
-for i in range(1000): # Пройдемся в цикле 1000 раз
-    loss = model.train_on_batch(x_train, y_train) # Выполним на каждом шаге обучение нашей модели
+for i in range(1000):  # Пройдемся в цикле 1000 раз
+    loss = model.train_on_batch(x_train, y_train)  # Выполним на каждом шаге обучение нашей модели
 print('Ошибка (mse) после 1000 шагов', loss)
 
-
-weights = model.get_weights() # Получим веса нашей модели (генерируются случайным образом)
+weights = model.get_weights()  # Получим веса нашей модели (генерируются случайным образом)
 print(weights)
 print(new_weight)
-
 
 model.predict(x_train)
 
 print(y_train)
-
-
