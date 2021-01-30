@@ -46,3 +46,38 @@ print(n2)
 output = n1 * w5 + n2 * w6
 print(output)
 print(model.predict(x_train))
+
+
+#################
+# Функции активации
+#################
+
+# Но возникает проблема. Если все нейросети будут похожи на нашу,
+# то нет смысла в большом количестве слоев из-за того, что, по сути,
+# наша нейронная сеть будет обычной функцией. Поэтому придумали такие штуки,
+# как функции активации. Именно они решают, какие нейроны следующего слоя будут активированны.
+
+
+#################
+# Sigmoid
+#################
+
+def sigmoid(x):
+    return 1 / (1 + np.e ** (-x))
+
+
+sigmoid_model = Sequential([
+    Dense(2, input_dim=2, activation='sigmoid',  use_bias=False),
+    Dense(1, activation='sigmoid', use_bias=False)
+])
+
+sigmoid_model.set_weights(new_weight)
+sigmoid_model.predict(x_train)
+
+n1 = sigmoid(w1 * x_train[0][0] + w2 * x_train[0][1])
+n2 = sigmoid(w3 * x_train[0][0] + w4 * x_train[0][1])
+print(n1)
+print(n2)
+
+sigmoid_output = sigmoid(n1 * w5 + n2 * w6)
+print(sigmoid_output)
