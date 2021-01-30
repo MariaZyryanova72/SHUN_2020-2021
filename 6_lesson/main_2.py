@@ -4,6 +4,7 @@
 
 import pandas as pd
 from os import path
+import numpy as np
 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
@@ -66,3 +67,75 @@ print(train_labels.shape)
 print(train_labels_categorical.shape)
 
 print(train_labels_categorical[0])
+
+
+####################
+# softmax функция активации
+####################
+
+from tensorflow.keras.layers import Flatten
+
+model = Sequential([
+    Flatten(input_shape=(28, 28)),
+    Dense(256, activation='relu'),
+    Dense(10, activation='softmax')
+])
+
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+hist = model.fit(train_images, train_labels, batch_size=100, epochs=20)
+
+plt.plot(hist.history['accuracy'])
+plt.show()
+
+model.evaluate(test_images, test_labels)
+predict = model.predict(test_images[0].reshape(1, 28, 28))
+print(predict)
+
+print(np.argmax(predict))
+print(test_labels[0])
+
+model = Sequential([
+    Flatten(input_shape=(28, 28)),
+    Dense(256, activation='relu'),
+    Dense(10, activation='softmax')
+])
+
+model.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+hist = model.fit(train_images, train_labels_categorical, batch_size=100, epochs=20)
+
+plt.plot(hist.history['accuracy'])
+plt.show()
+
+model.evaluate(test_images, test_labels_categorical)
+plt.colorbar(plt.imshow(train_images[0], cmap='binary_r'))
+plt.show()
+
+train_images = train_images / 255
+test_images = test_images / 255
+plt.colorbar(plt.imshow(train_images[0], cmap='binary_r'))
+plt.show()
+
+model = Sequential([
+    Flatten(input_shape=(28, 28)),
+    Dense(256, activation='relu'),
+    Dense(10, activation='softmax')
+])
+
+model.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+hist = model.fit(train_images, train_labels_categorical, batch_size=100, epochs=20)
+model.evaluate(test_images, test_labels_categorical)
