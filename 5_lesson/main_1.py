@@ -106,3 +106,30 @@ print(n2)
 
 relu_output = relu(n1 * w5 + n2 * w6)
 print(relu_output)
+
+
+#################
+# tanh
+#################
+
+
+def th(x):
+    return (np.e ** x - np.e ** (-x)) / (np.e ** x + np.e ** (-x))
+
+
+th_model = Sequential([
+    Dense(2, input_dim=2, activation='tanh', use_bias=False),
+    Dense(1, activation='tanh', use_bias=False)
+])
+
+th_model.set_weights(new_weight)
+th_model.predict(x_train)
+
+
+n1 = th(w1 * x_train[0][0] + w2 * x_train[0][1])
+n2 = th(w3 * x_train[0][0] + w4 * x_train[0][1])
+print(n1)
+print(n2)
+
+th_output = th(n1 * w5 + n2 * w6)
+print(th_output)
