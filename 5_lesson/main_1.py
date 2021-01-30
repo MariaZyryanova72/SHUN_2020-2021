@@ -125,7 +125,6 @@ th_model = Sequential([
 th_model.set_weights(new_weight)
 th_model.predict(x_train)
 
-
 n1 = th(w1 * x_train[0][0] + w2 * x_train[0][1])
 n2 = th(w3 * x_train[0][0] + w4 * x_train[0][1])
 print(n1)
@@ -133,3 +132,49 @@ print(n2)
 
 th_output = th(n1 * w5 + n2 * w6)
 print(th_output)
+
+#################
+# Оптимизатор
+#################
+
+# Оптимизатор решает, на сколько и в какую сторону менять веса нейронной сети.
+
+y_train = np.array([th_output])  # relu_output  sigmoid_output
+print(y_train)
+print(y_train.shape)
+model = Sequential()
+model.add(Dense(2, input_dim=2, activation='linear', use_bias=False))
+model.add(Dense(1, activation='linear', use_bias=False))
+model.compile(optimizer='adam', loss='mse', metrics=['mae'])
+print(model.summary())
+
+weights = model.get_weights()
+print(weights)
+print(new_weight)
+
+print(w1, w2, w3, w4, w5, w6)
+
+print(model.train_on_batch(x_train, y_train))
+
+print(model.fit(x_train, y_train, epochs=1000))
+
+weights = model.get_weights() # Получим веса нашей модели (генерируются случайным образом)
+print(weights)
+print(new_weight)
+
+
+for i in range(1000): # Пройдемся в цикле 1000 раз
+    loss = model.train_on_batch(x_train, y_train) # Выполним на каждом шаге обучение нашей модели
+print('Ошибка (mse) после 1000 шагов', loss)
+
+
+weights = model.get_weights() # Получим веса нашей модели (генерируются случайным образом)
+print(weights)
+print(new_weight)
+
+
+model.predict(x_train)
+
+print(y_train)
+
+
