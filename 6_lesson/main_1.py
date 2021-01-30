@@ -85,3 +85,4 @@ hist = model.fit(x_train, y_train, epochs=500, callbacks=[CallBack()])
 plt.plot(hist.history['loss'])
 plt.show()
 plot_prediction(x_test, y_test, model)
+
